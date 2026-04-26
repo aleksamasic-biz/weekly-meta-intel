@@ -1,0 +1,23 @@
+{
+  "_comment": "Source of truth for archive issues. Updated weekly. Site fetches via cdn.jsdelivr.net for fresh data.",
+  "version": 1,
+  "lastUpdated": "2026-04-26T17:00:00Z",
+  "futurePlaceholders": 4,
+  "issues": [
+    {
+      "num": 1,
+      "date": "2026-04-20",
+      "slug": "fitness-2026-04-20",
+      "title": "UGC dominates, fatigue accelerates, specificity wins",
+      "summary": "The three shifts reshaping fitness coach advertising right now — plus 7 winning hooks and 3 briefed ad ideas.",
+      "tags": ["Fitness Coaching", "UGC"],
+      "featuredTitle": "Meta Ads Weekly Brief — Fitness Coaching",
+      "featuredDesc": "<strong>UGC phone-quality video is now dominant</strong>, creative fatigue is accelerating (~40% decay in 7 days), and <strong>specificity crushes inspiration</strong> in every hook and copy angle studied this week.",
+      "featuredMeta": ["6 min read", "7 hooks · 5 angles", "3 ad ideas inside", "100+ advertisers"],
+      "insight": "The less it <em>looks</em> like an ad, the better it performs.",
+      "insightFooter": "UGC vs. Studio · 40% fatigue decay",
+      "_contentInline": true,
+      "_contentNote": "Brief HTML for this issue is baked into archive.html modal. New issues that are JSON-only will fall back to the first baked-in brief unless contentHtml field is added or contentUrl points to a separate HTML file."
+    }
+  ]
+}
