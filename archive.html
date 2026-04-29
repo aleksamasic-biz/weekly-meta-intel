@@ -1803,15 +1803,15 @@
       <div class="apply-cta-points">
         <div class="apply-point">
           <div class="apply-point-num">01 · AUDIT</div>
-          <div class="apply-point-text">I run your <strong>active creatives, hooks, and funnel</strong> against this week's winning patterns. What to kill, what to scale.</div>
+          <div class="apply-point-text">A walkthrough of your <strong>creatives, hooks, and funnel</strong> next to the patterns from this week's brief.</div>
         </div>
         <div class="apply-point">
           <div class="apply-point-num">02 · MAP</div>
-          <div class="apply-point-text">We pin the gaps - <strong>angles, formats, audiences</strong> your competitors are running that you're missing.</div>
+          <div class="apply-point-text">A note of the <strong>angles, formats, and audiences</strong> running in the niche that aren't in your account yet.</div>
         </div>
         <div class="apply-point">
           <div class="apply-point-num">03 · SHIP</div>
-          <div class="apply-point-text">You leave with <strong>3 specific changes</strong> - written down, ready to brief your editor or run yourself this week.</div>
+          <div class="apply-point-text">A short list of <strong>3 concrete changes</strong> documented so you can hand them off or run them yourself.</div>
         </div>
       </div>
       <div class="apply-cta-actions">
@@ -2009,6 +2009,11 @@
 </div>
 
 <script>
+  // Always start at top on refresh (disable browser scroll restoration)
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+  window.addEventListener('load', function(){ window.scrollTo(0, 0); });
+
   // ============ SCROLL PROGRESS ============
   (function() {
     var fill = document.getElementById('scrollProgress');
