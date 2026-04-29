@@ -1713,7 +1713,6 @@
     <div class="tabs">
       <a href="#top" class="tab-pill active" data-action="scroll-top"><span class="tab-pill-num">00</span><span>Archive</span></a>
       <a href="#issueGrid" class="tab-pill" data-action="scroll-grid"><span class="tab-pill-num">01</span><span>Fitness Coaching</span></a>
-      <a href="#nicheGrid" class="tab-pill ghost" data-action="scroll-niches"><span class="tab-pill-num">+</span><span>More niches</span></a>
     </div>
     <button class="nav-search" id="searchToggle" aria-label="Search briefs">
       <span>⌕ Search briefs</span>
@@ -1796,7 +1795,7 @@
   </div>
 
   <!-- ============ APPLY CTA (reveal-on-scroll) ============ -->
-  <section class="apply-cta reveal">
+  <section class="apply-cta reveal" id="applyCta">
     <div class="apply-cta-inner">
       <div class="apply-cta-eyebrow">Step 2 - Apply It</div>
       <h2>Reading the intel is the easy part.<br><span class="accent">Applying it</span> is the rest.</h2>
@@ -2048,8 +2047,6 @@
   ];
   // Number of future Monday placeholder cards to render (after Next Up).
   var FUTURE_PLACEHOLDERS = 4;
-  // Where waitlist mailto buttons send signups
-  var WAITLIST_EMAIL = 'info@aleksaadvision.com';
 
   // ============ EXTERNAL MANIFEST URL (auto-update) ============
   // Site fetches this JSON on load. If the JSON has newer issues, they're merged in
@@ -2120,7 +2117,7 @@
 
     // 1) NEXT UP card
     if (upcoming[0]) {
-      html += '<article class="card upcoming" data-filter="upcoming">'
+      html += '<article class="card upcoming" data-filter="upcoming" onclick="scrollToApply()">'
         + '<div class="card-head">'
         +   '<span class="card-issue">Report ' + pad3(latestNum + 1) + ' · ' + escapeHtml(fmtWeekRange(upcoming[0])) + '</span>'
         +   '<span class="card-status next">Next Up</span>'
@@ -2278,18 +2275,6 @@
     if (empty) empty.classList.toggle('visible', currentSearchQuery && !anyVisible);
   }
 
-  // ============ WAITLIST (locked tabs / niche cards) ============
-  function openWaitlist(nicheName) {
-    var subj = encodeURIComponent('Waitlist: ' + nicheName);
-    var body = encodeURIComponent("Hi Aleksa,\n\nAdd me to the waitlist for the " + nicheName + " weekly intel brief.\n\nThanks.");
-    window.open('mailto:' + WAITLIST_EMAIL + '?subject=' + subj + '&body=' + body, '_blank', 'noopener');
-  }
-  function openNicheRequest() {
-    var subj = encodeURIComponent('Niche request: which niche should we cover?');
-    var body = encodeURIComponent("Hi Aleksa,\n\nThe niche I'd love to see covered next is:\n\n[your niche here]\n\nThanks.");
-    window.open('mailto:' + WAITLIST_EMAIL + '?subject=' + subj + '&body=' + body, '_blank', 'noopener');
-  }
-
   // ============ WIRE UP CLICK HANDLERS ============
   function wireHandlers() {
     // Filter chips
@@ -2332,28 +2317,10 @@
         if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
-    // "More niches" tab → scroll to niche grid
-    document.querySelectorAll('[data-action="scroll-niches"]').forEach(function(el) {
-      el.addEventListener('click', function(e) {
-        e.preventDefault();
-        var grid = document.getElementById('nicheGrid');
-        if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-    // Niche cards (non-active) → waitlist mailto
-    document.querySelectorAll('.niche').forEach(function(card) {
-      var name = (card.querySelector('h5') || {}).textContent || '';
-      if (card.classList.contains('active')) {
-        // Active fitness card → scroll top
-        card.addEventListener('click', function() {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      } else if (name === 'Request a Niche') {
-        card.addEventListener('click', openNicheRequest);
-      } else if (name) {
-        card.addEventListener('click', function() { openWaitlist(name); });
-      }
-    });
+  }
+  function scrollToApply() {
+    var el = document.getElementById('applyCta');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   // ============ MODAL (slug-based switching) ============
