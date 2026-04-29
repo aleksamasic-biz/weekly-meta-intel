@@ -2234,18 +2234,18 @@
     if (currentSearchQuery) applySearch(currentSearchQuery);
   }
   function updateFilterCounts() {
-    var live = ISSUES.length ? 1 : 0;
-    var archived = Math.max(0, ISSUES.length - 1);
-    var upcoming = 1 + FUTURE_PLACEHOLDERS;
-    var all = ISSUES.length + upcoming;
-    var set = function(filter, count) {
-      var el = document.querySelector('.filter-chip[data-filter="' + filter + '"] .count');
-      if (el) el.textContent = count;
-    };
-    set('all', all);
-    set('live', live);
-    set('upcoming', upcoming);
-    set('archive', archived);
+    var grid = document.getElementById('issueGrid');
+    var cards = grid ? grid.querySelectorAll('.card') : [];
+    var counts = { all: 0, live: 0, upcoming: 0, archive: 0 };
+    cards.forEach(function(card) {
+      counts.all++;
+      var f = card.getAttribute('data-filter');
+      if (counts[f] !== undefined) counts[f]++;
+    });
+    ['all','live','upcoming','archive'].forEach(function(k) {
+      var el = document.querySelector('.filter-chip[data-filter="' + k + '"] .count');
+      if (el) el.textContent = counts[k];
+    });
   }
 
   // ============ SEARCH ============
