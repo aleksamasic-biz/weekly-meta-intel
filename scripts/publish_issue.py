@@ -119,9 +119,6 @@ contentHtml structure (must match exactly, use the same CSS class names and tags
   </div>
 </div>
 
-<h2>TL;DR - 3 Key Insights This Week</h2>
-<ul><li><strong>...</strong> ...</li> ... 3 items</ul>
-
 <h2>Winning Hooks This Week</h2>
 <p>intro</p>
 <ol>
